@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ticket Management</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      color: #333;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      margin-bottom: 5px;
+      color: #222;
+    }
+
+    .subtitle {
+      color: #777;
+      margin-top: 0;
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      margin-bottom: 25px;
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      background-color: #fff;
+    }
+
+    input:focus,
+    select:focus {
+      outline: none;
+      border-color: #4a74e8;
+      box-shadow: 0 0 0 2px rgba(74, 116, 232, 0.12);
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 6px;
+      background-color: #4a74e8;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #365fc7;
+    }
+
+    .table-wrapper {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      background-color: #fff;
+    }
+
+    th,
+    td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #e5e5e5;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f7f8fa;
+      font-size: 14px;
+      color: #555;
+    }
+
+    tr:hover {
+      background-color: #fafafa;
+    }
+
+    #message {
+      padding: 10px 12px;
+      border-radius: 6px;
+    }
+
+    #message:empty {
+      display: none;
+    }
+
+    .error {
+      color: #b42318;
+      background-color: #fee4e2;
+    }
+
+    .success {
+      color: #067647;
+      background-color: #dcfae6;
+    }
+
+    .warning {
+      color: #b54708;
+      background-color: #fef0c7;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 20px 10px;
+      }
+
+      .card {
+        padding: 18px;
+      }
+
+      th,
+      td {
+        padding: 10px 8px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>Ticket Management</h1>
+    <p class="subtitle">Kelola dan monitor customer ticket.</p>
+
+    <p id="message"></p>
+
+    <div class="card">
+      <h2>Tambah Ticket</h2>
+
+      <form id="ticket-form">
+
+        <label for="customer_id">Customer</label>
+        <select id="customer_id" name="customer_id" required>
+          <option value="">Pilih Customer</option>
+        </select>
+
+        <label for="subject">Subject</label>
+        <input
+          type="text"
+          id="subject"
+          name="subject"
+          placeholder="Masukkan subject ticket"
+          required
+        >
+
+        <label for="priority">Priority</label>
+        <select id="priority" name="priority" required>
+          <option value="low">Low</option>
+          <option value="medium" selected>Medium</option>
+          <option value="high">High</option>
+        </select>
+
+        <label for="status">Status</label>
+        <select id="status" name="status" required>
+          <option value="open" selected>Open</option>
+          <option value="in_progress">In Progress</option>
+          <option value="closed">Closed</option>
+        </select>
+
+        <button type="submit">Simpan Ticket</button>
+
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Daftar Ticket</h2>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Subject / Customer</th>
+              <th>Priority</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+
+          <tbody id="ticket-list"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/app.js"></script>
+
+</body>
+</html>
