@@ -18,7 +18,6 @@ $status     = trim($_POST['status'] ?? '');
 $errors = [];
 if ($customerId === '') $errors[] = 'Customer wajib dipilih.';
 if ($subject === '')    $errors[] = 'Subject wajib diisi.';
-if ($description === '') $errors[] = 'Description wajib diisi.';
 if (!in_array($priority, ['low', 'medium', 'high'], true)) $errors[] = 'Priority tidak valid.';
 if (!in_array($status, ['open', 'progress', 'closed'], true)) $errors[] = 'Status tidak valid.';
 
