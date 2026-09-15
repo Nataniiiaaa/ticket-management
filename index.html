@@ -55,7 +55,8 @@
     }
 
     input,
-    select {
+    select,
+    textarea {
       width: 100%;
       padding: 10px;
       border: 1px solid #ccc;
@@ -184,6 +185,14 @@
           required
         >
 
+        <label for="description">Description</label>
+        <textarea
+            id="description"
+            name="description"
+            placeholder="Detail tambahan (opsional)"
+            rows="3"
+        ></textarea>
+
         <label for="priority">Priority</label>
         <select id="priority" name="priority" required>
           <option value="low">Low</option>
@@ -191,10 +200,11 @@
           <option value="high">High</option>
         </select>
 
+
         <label for="status">Status</label>
         <select id="status" name="status" required>
           <option value="open" selected>Open</option>
-          <option value="in_progress">In Progress</option>
+          <option value="progress">Progress</option>
           <option value="closed">Closed</option>
         </select>
 

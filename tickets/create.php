@@ -11,12 +11,14 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 // --- Validasi SERVER-SIDE 
 $customerId = trim($_POST['customer_id'] ?? '');
 $subject    = trim($_POST['subject'] ?? '');
+$description = trim($_POST['description'] ?? '');
 $priority   = trim($_POST['priority'] ?? '');
 $status     = trim($_POST['status'] ?? '');
 
 $errors = [];
 if ($customerId === '') $errors[] = 'Customer wajib dipilih.';
 if ($subject === '')    $errors[] = 'Subject wajib diisi.';
+if ($description === '') $errors[] = 'Description wajib diisi.';
 if (!in_array($priority, ['low', 'medium', 'high'], true)) $errors[] = 'Priority tidak valid.';
 if (!in_array($status, ['open', 'progress', 'closed'], true)) $errors[] = 'Status tidak valid.';
 
@@ -29,12 +31,13 @@ if (!empty($errors)) {
 try {
     $db = getDB();
     $stmt = $db->prepare(
-        "INSERT INTO tickets (customer_id, subject, priority, status)
-         VALUES (:customer_id, :subject, :priority, :status)"
+        "INSERT INTO tickets (customer_id, subject, description, priority, status)
+         VALUES (:customer_id, :subject, :description, :priority, :status)"
     );
     $stmt->execute([
         ':customer_id' => $customerId,
         ':subject'     => $subject,
+        ':description' => $description,
         ':priority'    => $priority,
         ':status'      => $status,
     ]);
