@@ -25,7 +25,7 @@ try {
     echo json_encode([
         'tickets' => $tickets,
         // dikirim ke frontend biar bisa dikasih tau "nama customer mungkin ga akurat"
-        'customer_api_warning' => $customerResult['ok'] ? null : $customerResult['error'],
+        'customer_api_warning' => $customerResults['ok'] ? null : $customerResults['error'],
     ]);
 } catch (PDOException $e) {
     http_response_code(500);
